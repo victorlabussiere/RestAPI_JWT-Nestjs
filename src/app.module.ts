@@ -3,7 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 
-import { HFSE_databaseConfigs } from './database/database.config';
+import { AuthModule } from './auth/auth.module';
+import { UserSchema } from './database/entity/UserSchema.entity';
+import { MySqlStrategy } from './database/strategy/MySqlStrategy';
 
 import * as dotenv from 'dotenv'
 
@@ -22,10 +24,8 @@ const mySqlDatabase = new MySqlStrategy(UserSchema, mySqlConfigs)
 @Module({
   imports: [
     mySqlDatabase.connect(),
-    // conexão sistema<--->banco de dados
-    TypeOrmModule.forRoot(HFSE_databaseConfigs),
-    // conexão recursos Users
-    UsersModule
+    UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService]

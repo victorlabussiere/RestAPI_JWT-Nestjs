@@ -1,8 +1,15 @@
 import { TypeOrmModule } from '@nestjs/typeorm'
 import * as dotenv from 'dotenv'
-import { DatabaseConfig } from './DatabaseConfigs.types'
 import { Database } from '../entity/Database.entity'
 dotenv.config()
+
+type DatabaseConfig = {
+    host: string
+    port: number
+    username: string
+    password: string
+    database: string
+}
 
 export class MySqlStrategy implements Database {
     databaseConfig

@@ -1,6 +1,6 @@
 import { UserSchema } from "../../database/entity/UserSchema.entity";
 
-export class CreateUserDto implements UserSchema {
+export class UpdateUserDto implements UserSchema {
     id: number;
     nome: string;
     cpf: string;
