@@ -1,24 +1,31 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { LoginDto } from './dtos/authLogin.dto';
+import { UsersServices } from 'src/users/users.service';
 import { UserSchema } from 'src/database/entity/UserSchema.entity';
-import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthService {
-    constructor(
-        @InjectRepository(UserSchema)
-        private usersRepository: Repository<UserSchema>
-    ) { }
+    constructor(private userServices: UsersServices) { }
 
-    async validateUser(authUserDto: { email: string, senha: string }) {
-        const query: UserSchema = await this.usersRepository.findOne({ where: { email: authUserDto.email } })
+    async validateUser(loginDto: LoginDto) {
+        const { email, senha } = loginDto
+        const user: UserSchema = await this.userServices.findByEmail(email)
 
-        if (!query) { return 'Usuário não encontrado' }
-        if (query.senha !== authUserDto.senha) return 'Dados inválidos'
+        if (!user) return null
+        if (user.senha !== senha) return null
 
-        return {
-            setor: query.setor,
-            message: 'Autenticado com sucesso'
-        }
+        return user
     }
-}
+
+    async login(loginDto: LoginDto) {
+        const user: UserSchema = await this.userServices.findByEmail(loginDto.email)
+
+        if (user?.senha != loginDto.senha) throw new UnauthorizedException()
+
+        const { email, ...result } = user
+        /**
+         * TODO jwt token generator
+         */
+        return result
+    }
+} 

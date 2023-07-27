@@ -8,6 +8,7 @@ import { UserSchema } from './database/entity/UserSchema.entity';
 import { MySqlStrategy } from './database/strategy/MySqlStrategy';
 
 import * as dotenv from 'dotenv'
+import { PassportModule } from '@nestjs/passport';
 
 dotenv.config()
 
@@ -26,6 +27,7 @@ const mySqlDatabase = new MySqlStrategy(UserSchema, mySqlConfigs)
     mySqlDatabase.connect(),
     UsersModule,
     AuthModule,
+    PassportModule
   ],
   controllers: [AppController],
   providers: [AppService]
