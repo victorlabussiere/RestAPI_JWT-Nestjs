@@ -1,12 +1,32 @@
-import { UserSchema } from "../../database/entity/UserSchema.entity";
+import { IsOptional, IsBoolean, IsString, IsEmail } from 'class-validator'
 
-export class UpdateUserDto implements UserSchema {
-    id: number;
-    nome: string;
-    cpf: string;
-    email: string;
-    senha: string;
-    setor: string;
-    matricula: string;
-    estado_atividade: boolean;
+export class UpdateUserDto {
+
+    @IsOptional()
+    @IsString()
+    nome?: string;
+
+    @IsOptional()
+    @IsString()
+    cpf?: string;
+
+    @IsOptional()
+    @IsEmail()
+    email?: string;
+
+    @IsOptional()
+    @IsString()
+    senha?: string;
+
+    @IsOptional()
+    @IsString()
+    setor?: string;
+
+    @IsOptional()
+    @IsString()
+    matricula?: string;
+
+    @IsOptional()
+    @IsBoolean()
+    estado_atividade?: boolean;
 }

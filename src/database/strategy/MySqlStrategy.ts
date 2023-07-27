@@ -12,9 +12,8 @@ type DatabaseConfig = {
 }
 
 export class MySqlStrategy implements Database {
-    databaseConfig
-    schema
-    constructor(schema, databaseConfig: DatabaseConfig) {
+
+    constructor(public schema, public databaseConfig: DatabaseConfig) {
         this.schema = schema
         this.databaseConfig = databaseConfig
     }

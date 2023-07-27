@@ -1,7 +1,6 @@
 export abstract class Database {
-    databaseConfig
-    schema
-    constructor(databaseConfig, schema) {
+
+    constructor(public databaseConfig, public schema) {
         this.databaseConfig = databaseConfig
         this.schema = schema
     }
