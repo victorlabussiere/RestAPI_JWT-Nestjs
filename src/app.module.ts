@@ -4,27 +4,27 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 
 import { AuthModule } from './auth/auth.module';
-import { UserSchema } from './database/entity/UserSchema.entity';
-import { MySqlStrategy } from './database/strategy/MySqlStrategy';
+import { UserSchema } from './entity/UserSchema.entity';
 
 import * as dotenv from 'dotenv'
 import { PassportModule } from '@nestjs/passport';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 dotenv.config()
-
-const mySqlConfigs = {
+const mySqlDatabase = TypeOrmModule.forRoot({
+  type: 'mysql',
   host: process.env.DB_HOST,
   port: parseInt(process.env.DB_PORT),
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_DATABASE,
-}
-
-const mySqlDatabase = new MySqlStrategy(UserSchema, mySqlConfigs)
+  entities: [UserSchema],
+  synchronize: true
+})
 
 @Module({
   imports: [
-    mySqlDatabase.connect(),
+    mySqlDatabase,
     UsersModule,
     AuthModule,
     PassportModule
