@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
 import { UsersServices } from "./users.service";
-import { UserSchema } from "../entity/UserSchema.entity";
+import { UserSchema } from "../database/entity/UserSchema.entity";
 import { CreateUserDto } from "./dtos/create-user.dto";
 
 import { ParseIntPipe } from "@nestjs/common";
