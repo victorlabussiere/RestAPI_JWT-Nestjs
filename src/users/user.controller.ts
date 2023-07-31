@@ -6,6 +6,8 @@ import { CreateUserDto } from "./dtos/create-user.dto";
 import { ParseIntPipe } from "@nestjs/common";
 import { UpdateUserDto } from "./dtos/update-user.dto";
 
+import { AuthGuard } from "src/auth/auth.guard";
+
 @Controller('users')
 export class UserController {
 
