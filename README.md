@@ -2,16 +2,25 @@
 
 [Nest](https://github.com/victorlabussiere/nest-protected-routes) Serviço de Rotas Protegidas com Nest js e JWT
 
-## Installation
+## Pré requisitos
+
+- Node js
+- MySQL Server
+
+## Instalação
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+## Iniciando o APP
+
+Para iniciar o APP, é necessário que você configure um arquivo .env na raiz do projeto seguindo o modelo do arquivo .example.env contendo as variáveis de ambiente com as informações necessárias para realizar uma conexão com seu banco de dados MySQL ou Mariadb
+
+Desta forma, suas configurações de banco de dados serão implementadas automaticamente na aplicação, gerando uma tabela de acordo com o UserSchema.
 
 ```bash
-# development
+# desenvolvimento
 $ npm run start
 
 # watch mode
@@ -21,7 +30,7 @@ $ npm run dev
 $ npm run start:prod
 ```
 
-## Test
+## Testes
 
 ```bash
 # unit tests
@@ -34,16 +43,10 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## Entre em contato
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- Author - [Victor Labussiere](https://linkedin.com/in/victorlabussiere)
 
-## Stay in touch
+## Licença
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+[MIT licensed](LICENSE).
